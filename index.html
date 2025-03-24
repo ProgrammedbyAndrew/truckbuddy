@@ -24,7 +24,7 @@
             position: sticky;
             top: 0;
             background: #2a2a2a;
-            padding: 10px 20px;
+            padding: 10px 15px; /* Reduced padding for mobile */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,7 +33,7 @@
         }
 
         nav .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Smaller logo font for iPhone */
             font-weight: bold;
             color: #00f7ff;
             text-shadow: 0 0 5px #00f7ff;
@@ -41,13 +41,14 @@
 
         nav ul {
             display: flex;
-            gap: 20px;
+            gap: 10px; /* Smaller gap for iPhone */
             list-style: none;
         }
 
         nav ul li a {
             color: #ccc;
             text-decoration: none;
+            font-size: 0.9rem; /* Smaller font for nav links */
             transition: color 0.3s;
         }
 
@@ -59,7 +60,7 @@
         /* Page Container */
         .page {
             display: none;
-            padding: 20px;
+            padding: 15px; /* Reduced padding for mobile */
         }
 
         .page.active {
@@ -68,7 +69,7 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: 70vh; /* Shorter hero for iPhone */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -76,38 +77,41 @@
             text-align: center;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1600x900/?pickup-truck');
             background-size: cover;
+            background-position: center;
             animation: fadeIn 2s ease-in;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 2.5rem; /* Smaller heading for iPhone */
             text-shadow: 0 0 10px #00f7ff;
             animation: slideUp 1s ease-out;
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1rem; /* Smaller subtitle */
             margin: 10px 0 20px;
             color: #ccc;
         }
 
         .search-bar {
             display: flex;
+            flex-direction: column; /* Stack inputs vertically on iPhone */
             gap: 10px;
+            width: 90%; /* Full width for better fit */
             animation: zoomIn 1s ease-out 1s;
             animation-fill-mode: both;
         }
 
         .search-bar input {
-            padding: 10px;
+            padding: 12px;
             font-size: 1rem;
             border: none;
             border-radius: 20px;
-            width: 200px;
+            width: 100%; /* Full width */
         }
 
         .search-bar button {
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 1rem;
             border: none;
             background: #00f7ff;
@@ -118,39 +122,40 @@
         }
 
         .search-bar button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px #00f7ff;
+            transform: scale(1.05); /* Smaller scale for mobile */
+            box-shadow: 0 0 10px #00f7ff;
         }
 
         /* Vendor Options */
         .vendor-options {
-            padding: 50px 20px;
+            padding: 30px 15px; /* Reduced padding */
             text-align: center;
             background: #2a2a2a;
         }
 
         .vendor-options h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 1.8rem; /* Smaller heading */
+            margin-bottom: 20px;
         }
 
         .options-grid {
             display: flex;
-            justify-content: center;
-            gap: 20px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px; /* Smaller gap */
         }
 
         .option {
-            padding: 15px 25px;
+            padding: 10px 15px; /* Smaller padding */
             background: #3a3a3a;
             border-radius: 10px;
             cursor: pointer;
+            font-size: 0.9rem; /* Smaller font */
             transition: transform 0.3s, background 0.3s;
         }
 
         .option:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             background: #00f7ff;
             color: #1a1a1a;
         }
@@ -162,26 +167,26 @@
 
         /* Listings */
         .listings {
-            padding: 50px 20px;
+            padding: 30px 15px;
         }
 
         .listings h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
             text-align: center;
         }
 
         .listings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
+            grid-template-columns: 1fr; /* Single column for iPhone */
+            gap: 15px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
         .listing {
             background: #3a3a3a;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
             text-align: center;
             animation: fadeIn 1s ease-in;
@@ -189,56 +194,59 @@
         }
 
         .listing:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .listing img {
             width: 100%;
-            height: 150px;
+            height: 120px; /* Smaller image height */
             object-fit: cover;
             border-radius: 10px;
         }
 
         .listing h3 {
-            margin: 10px 0;
+            margin: 8px 0;
+            font-size: 1.1rem; /* Smaller font */
         }
 
         .listing p {
             color: #ccc;
+            font-size: 0.9rem;
         }
 
         .listing button {
             margin-top: 10px;
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: #00f7ff;
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            font-size: 0.9rem;
             transition: transform 0.3s;
         }
 
         .listing button:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         /* Vendor Details */
         .vendor-details {
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
             background: #2a2a2a;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
         }
 
         .vendor-details img {
             width: 100%;
-            height: 300px;
+            height: 200px; /* Smaller image height */
             object-fit: cover;
             border-radius: 10px;
         }
 
         .vendor-details .reviews {
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .review {
@@ -246,20 +254,22 @@
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
+            font-size: 0.9rem;
         }
 
         /* Booking Form */
         .booking-form {
-            max-width: 600px;
+            max-width: 100%;
             margin: 0 auto;
             background: #2a2a2a;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
         }
 
         .booking-form label {
             display: block;
             margin: 10px 0 5px;
+            font-size: 0.9rem;
         }
 
         .booking-form input, .booking-form select {
@@ -269,25 +279,27 @@
             border-radius: 5px;
             background: #3a3a3a;
             color: #fff;
+            font-size: 0.9rem;
         }
 
         .booking-form button {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 10px 20px;
             background: #00f7ff;
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            font-size: 1rem;
         }
 
         /* Profile Page */
         .profile {
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
         .profile .bookings {
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .booking {
@@ -295,6 +307,7 @@
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
+            font-size: 0.9rem;
         }
 
         /* Modal */
@@ -313,19 +326,72 @@
 
         .modal-content {
             background: #2a2a2a;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
             text-align: center;
             animation: slideUp 0.5s ease-out;
+            width: 90%; /* Ensure modal fits on iPhone */
+            max-width: 300px;
         }
 
         .modal-content button {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 10px 20px;
             background: #00f7ff;
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 30px 15px;
+            background: #2a2a2a;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: #3a3a3a;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2a2a2a;
+            padding: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        footer p {
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: #00f7ff;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
 
         /* Animations */
@@ -346,12 +412,198 @@
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
 
         .pulse {
             animation: pulse 2s infinite;
+        }
+
+        /* Media Queries for Larger Screens (Desktop) */
+        @media (min-width: 768px) {
+            nav {
+                padding: 10px 20px;
+            }
+
+            nav .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            nav ul li a {
+                font-size: 1rem;
+            }
+
+            .page {
+                padding: 20px;
+            }
+
+            .hero {
+                height: 100vh;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+
+            .search-bar {
+                flex-direction: row;
+                width: auto;
+            }
+
+            .search-bar input {
+                width: 200px;
+            }
+
+            .search-bar button:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px #00f7ff;
+            }
+
+            .vendor-options {
+                padding: 50px 20px;
+            }
+
+            .vendor-options h2 {
+                font-size: 2.5rem;
+            }
+
+            .options-grid {
+                gap: 20px;
+            }
+
+            .option {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+
+            .option:hover {
+                transform: translateY(-5px);
+            }
+
+            .listings {
+                padding: 50px 20px;
+            }
+
+            .listings h2 {
+                font-size: 2.5rem;
+            }
+
+            .listings-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+                max-width: 1200px;
+            }
+
+            .listing {
+                padding: 20px;
+            }
+
+            .listing img {
+                height: 150px;
+            }
+
+            .listing h3 {
+                font-size: 1.2rem;
+            }
+
+            .listing p {
+                font-size: 1rem;
+            }
+
+            .listing button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .listing button:hover {
+                transform: scale(1.1);
+            }
+
+            .vendor-details {
+                max-width: 800px;
+                padding: 20px;
+            }
+
+            .vendor-details img {
+                height: 300px;
+            }
+
+            .review {
+                font-size: 1rem;
+            }
+
+            .booking-form {
+                max-width: 600px;
+                padding: 20px;
+            }
+
+            .booking-form label {
+                font-size: 1rem;
+            }
+
+            .booking-form input, .booking-form select {
+                font-size: 1rem;
+            }
+
+            .booking-form button {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .profile {
+                max-width: 800px;
+            }
+
+            .booking {
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                width: auto;
+                max-width: 400px;
+            }
+
+            .modal-content button {
+                font-size: 1rem;
+            }
+
+            .testimonials {
+                padding: 50px 20px;
+            }
+
+            .testimonials h2 {
+                font-size: 2.5rem;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+                max-width: 1200px;
+            }
+
+            .testimonial {
+                padding: 20px;
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 20px;
+                margin-top: 40px;
+            }
+
+            footer p, footer a {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -364,6 +616,7 @@
             <li><a href="#" onclick="showPage('profile')">Profile</a></li>
             <li><a href="#" onclick="showPage('bookings')">Bookings</a></li>
             <li><a href="#" onclick="showPage('become-driver')">Become a Driver</a></li>
+            <li><a href="#" onclick="showPage('about')">About</a></li>
         </ul>
     </nav>
 
@@ -396,6 +649,25 @@
         <section class="listings" id="listings">
             <h2>Available Near You</h2>
             <div class="listings-grid" id="listings-grid"></div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Moved my entire apartment in under 2 hours! TruckBuddy saved the day."</p>
+                    <p><strong>- Sarah K.</strong></p>
+                </div>
+                <div class="testimonial">
+                    <p>"Affordable and reliable. The crew was professional and quick."</p>
+                    <p><strong>- Mike D.</strong></p>
+                </div>
+                <div class="testimonial">
+                    <p>"Best moving service I've ever used. Highly recommend!"</p>
+                    <p><strong>- Emily R.</strong></p>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -463,6 +735,14 @@
         </div>
     </div>
 
+    <!-- About Page -->
+    <div id="about" class="page">
+        <div class="profile">
+            <h2>About TruckBuddy</h2>
+            <p>TruckBuddy connects people who need to move stuff with reliable drivers and crews. Whether you're hauling a few boxes or an entire house, we've got you covered. Founded in 2023, our mission is to make moving simple, affordable, and hassle-free.</p>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
@@ -472,17 +752,23 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 TruckBuddy. All rights reserved.</p>
+        <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
+    </footer>
+
     <script>
         // Mock Vendor Data
         const vendors = [
-            { id: 1, name: "Mike’s Hauler", service: "Truck Only", price: 40, distance: "2.3 miles", img: "https://source.unsplash.com/300x150/?red-pickup-truck", bio: "Reliable Ford F-150, perfect for quick moves.", reviews: ["Great service! - 5/5", "On time, no hassle. - 4/5"] },
-            { id: 2, name: "Jenny & Truck", service: "Truck + Light Loading", price: 55, distance: "3.1 miles", img: "https://source.unsplash.com/300x150/?woman-pickup-truck", bio: "I’ll help with small boxes and light lifting.", reviews: ["Super friendly! - 5/5"] },
-            { id: 3, name: "Big Joe’s Crew", service: "Truck + Heavy Loading", price: 70, distance: "4.5 miles", img: "https://source.unsplash.com/300x150/?man-lifting-boxes", bio: "Heavy-duty truck, I lift anything.", reviews: ["Strong and fast! - 5/5"] },
-            { id: 4, name: "The Duo", service: "2 People", price: 80, distance: "5.2 miles", img: "https://source.unsplash.com/300x150/?two-workers-truck", bio: "Two of us to make it quick and easy.", reviews: ["Great teamwork! - 4/5"] },
-            { id: 5, name: "Triple Threat", service: "3 People", price: 100, distance: "6.0 miles", img: "https://source.unsplash.com/300x150/?group-workers", bio: "Three strong guys, no job too big.", reviews: ["Amazing service! - 5/5"] },
-            { id: 6, name: "Full Squad", service: "4+ People", price: 120, distance: "7.8 miles", img: "https://source.unsplash.com/300x150/?large-crew-truck", bio: "Full team for massive moves.", reviews: ["Best crew ever! - 5/5"] },
-            { id: 7, name: "Sam’s Pickup", service: "Truck Only", price: 45, distance: "1.8 miles", img: "https://source.unsplash.com/300x150/?black-pickup-truck", bio: "Quick and affordable transport.", reviews: ["Very reliable! - 4/5"] },
-            { id: 8, name: "Tina’s Team", service: "2 People", price: 85, distance: "4.0 miles", img: "https://source.unsplash.com/300x150/?workers-loading-truck", bio: "We’ll handle your move with care.", reviews: ["Careful and efficient! - 5/5"] }
+            { id: 1, name: "Mike’s Hauler", service: "Truck Only", price: 40, distance: "2.3 miles", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c", bio: "Reliable Ford F-150, perfect for quick moves.", reviews: ["Great service! - 5/5", "On time, no hassle. - 4/5"] },
+            { id: 2, name: "Jenny & Truck", service: "Truck + Light Loading", price: 55, distance: "3.1 miles", img: "https://images.unsplash.com/photo-1593085512500-5d55148d6f0d", bio: "I’ll help with small boxes and light lifting.", reviews: ["Super friendly! - 5/5"] },
+            { id: 3, name: "Big Joe’s Crew", service: "Truck + Heavy Loading", price: 70, distance: "4.5 miles", img: "https://images.unsplash.com/photo-1517511620798-cec34d42825e", bio: "Heavy-duty truck, I lift anything.", reviews: ["Strong and fast! - 5/5"] },
+            { id: 4, name: "The Duo", service: "2 People", price: 80, distance: "5.2 miles", img: "https://images.unsplash.com/photo-1570295999919-56cebcd28b2b", bio: "Two of us to make it quick and easy.", reviews: ["Great teamwork! - 4/5"] },
+            { id: 5, name: "Triple Threat", service: "3 People", price: 100, distance: "6.0 miles", img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f", bio: "Three strong guys, no job too big.", reviews: ["Amazing service! - 5/5"] },
+            { id: 6, name: "Full Squad", service: "4+ People", price: 120, distance: "7.8 miles", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", bio: "Full team for massive moves.", reviews: ["Best crew ever! - 5/5"] },
+            { id: 7, name: "Sam’s Pickup", service: "Truck Only", price: 45, distance: "1.8 miles", img: "https://images.unsplash.com/photo-1502877338535-766e1452684a", bio: "Quick and affordable transport.", reviews: ["Very reliable! - 4/5"] },
+            { id: 8, name: "Tina’s Team", service: "2 People", price: 85, distance: "4.0 miles", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3", bio: "We’ll handle your move with care.", reviews: ["Careful and efficient! - 5/5"] }
         ];
 
         let currentFilter = "All";
@@ -529,7 +815,7 @@
                     <img src="${vendor.img}" alt="${vendor.name}">
                     <h3>${vendor.name}</h3>
                     <p>${vendor.service}</p>
-                    <p>${vendor.price}/hr | ${vendor.distance}</p>
+                    <p>$${vendor.price}/hr | ${vendor.distance}</p>
                     <button onclick="viewVendor(${vendor.id})">View Details</button>
                 `;
                 grid.appendChild(div);
