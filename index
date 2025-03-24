@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruckBuddy - Move Anything, Anytime</title>
+    <style>
+        /* Reset and General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: #2a2a2a;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00f7ff;
+            text-shadow: 0 0 5px #00f7ff;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #00f7ff;
+            text-shadow: 0 0 5px #00f7ff;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            padding: 20px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1600x900/?pickup-truck');
+            background-size: cover;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            text-shadow: 0 0 10px #00f7ff;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin: 10px 0 20px;
+            color: #ccc;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            animation: zoomIn 1s ease-out 1s;
+            animation-fill-mode: both;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 20px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            background: #00f7ff;
+            color: #1a1a1a;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .search-bar button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #00f7ff;
+        }
+
+        /* Vendor Options */
+        .vendor-options {
+            padding: 50px 20px;
+            text-align: center;
+            background: #2a2a2a;
+        }
+
+        .vendor-options h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .options-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .option {
+            padding: 15px 25px;
+            background: #3a3a3a;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .option:hover {
+            transform: translateY(-5px);
+            background: #00f7ff;
+            color: #1a1a1a;
+        }
+
+        .option.active {
+            background: #00f7ff;
+            color: #1a1a1a;
+        }
+
+        /* Listings */
+        .listings {
+            padding: 50px 20px;
+        }
+
+        .listings h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .listing {
+            background: #3a3a3a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+            transition: transform 0.3s;
+        }
+
+        .listing:hover {
+            transform: translateY(-5px);
+        }
+
+        .listing img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .listing h3 {
+            margin: 10px 0;
+        }
+
+        .listing p {
+            color: #ccc;
+        }
+
+        .listing button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #00f7ff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .listing button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Vendor Details */
+        .vendor-details {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .vendor-details img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .vendor-details .reviews {
+            margin-top: 20px;
+        }
+
+        .review {
+            background: #3a3a3a;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .booking-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .booking-form input, .booking-form select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #3a3a3a;
+            color: #fff;
+        }
+
+        .booking-form button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #00f7ff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Profile Page */
+        .profile {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile .bookings {
+            margin-top: 20px;
+        }
+
+        .booking {
+            background: #3a3a3a;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .modal-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #00f7ff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">TruckBuddy</div>
+        <ul>
+            <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+            <li><a href="#" onclick="showPage('profile')">Profile</a></li>
+            <li><a href="#" onclick="showPage('bookings')">Bookings</a></li>
+            <li><a href="#" onclick="showPage('become-driver')">Become a Driver</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Move Anything, Anytime</h1>
+            <p>Book a truck and crew in minutes</p>
+            <div class="search-bar">
+                <input type="text" id="zipcode" placeholder="Enter your zip code">
+                <button onclick="search()" class="pulse">Find Trucks</button>
+            </div>
+        </section>
+
+        <!-- Vendor Options -->
+        <section class="vendor-options">
+            <h2>Choose Your Service</h2>
+            <div class="options-grid">
+                <div class="option" onclick="filterListings('Truck Only')">Truck Only</div>
+                <div class="option" onclick="filterListings('Truck + Light Loading')">Truck + Light Loading</div>
+                <div class="option" onclick="filterListings('Truck + Heavy Loading')">Truck + Heavy Loading</div>
+                <div class="option" onclick="filterListings('2 People')">2 People</div>
+                <div class="option" onclick="filterListings('3 People')">3 People</div>
+                <div class="option" onclick="filterListings('4+ People')">4+ People</div>
+            </div>
+        </section>
+
+        <!-- Listings -->
+        <section class="listings" id="listings">
+            <h2>Available Near You</h2>
+            <div class="listings-grid" id="listings-grid"></div>
+        </section>
+    </div>
+
+    <!-- Vendor Details Page -->
+    <div id="vendor-details" class="page">
+        <div class="vendor-details" id="vendor-details-content"></div>
+    </div>
+
+    <!-- Booking Page -->
+    <div id="booking" class="page">
+        <div class="booking-form">
+            <h2>Book Your Truck</h2>
+            <div id="booking-vendor"></div>
+            <label for="date">Date</label>
+            <input type="date" id="date">
+            <label for="time">Time</label>
+            <input type="time" id="time">
+            <label for="load-type">Load Type</label>
+            <select id="load-type">
+                <option value="light">Light (e.g., boxes)</option>
+                <option value="medium">Medium (e.g., furniture)</option>
+                <option value="heavy">Heavy (e.g., appliances)</option>
+            </select>
+            <label for="add-ons">Add-Ons</label>
+            <select id="add-ons">
+                <option value="none">None</option>
+                <option value="insurance">Insurance (+$10)</option>
+                <option value="extra-helper">Extra Helper (+$20/hr)</option>
+            </select>
+            <div id="price-display" style="margin: 20px 0;">Total: $0/hr</div>
+            <button onclick="confirmBooking()">Confirm Booking</button>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile" class="page">
+        <div class="profile">
+            <h2>Welcome, Tomas!</h2>
+            <p>Email: tomas@example.com</p>
+            <div class="bookings">
+                <h3>Past Bookings</h3>
+                <div class="booking">Mike’s Hauler - 10/15/2023 - $40</div>
+                <div class="booking">Big Joe’s Crew - 11/20/2023 - $70</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bookings Page -->
+    <div id="bookings" class="page">
+        <div class="profile">
+            <h2>Your Bookings</h2>
+            <div class="bookings">
+                <div class="booking">Mike’s Hauler - 10/15/2023 - $40</div>
+                <div class="booking">Big Joe’s Crew - 11/20/2023 - $70</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Become a Driver Page -->
+    <div id="become-driver" class="page">
+        <div class="profile">
+            <h2>Become a Driver</h2>
+            <p>Join our platform and start earning money with your truck!</p>
+            <button onclick="alert('Sign-up coming soon!')">Sign Up Now</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h3>Booking Confirmed!</h3>
+            <p>Your truck and crew are on the way.</p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock Vendor Data
+        const vendors = [
+            { id: 1, name: "Mike’s Hauler", service: "Truck Only", price: 40, distance: "2.3 miles", img: "https://source.unsplash.com/300x150/?red-pickup-truck", bio: "Reliable Ford F-150, perfect for quick moves.", reviews: ["Great service! - 5/5", "On time, no hassle. - 4/5"] },
+            { id: 2, name: "Jenny & Truck", service: "Truck + Light Loading", price: 55, distance: "3.1 miles", img: "https://source.unsplash.com/300x150/?woman-pickup-truck", bio: "I’ll help with small boxes and light lifting.", reviews: ["Super friendly! - 5/5"] },
+            { id: 3, name: "Big Joe’s Crew", service: "Truck + Heavy Loading", price: 70, distance: "4.5 miles", img: "https://source.unsplash.com/300x150/?man-lifting-boxes", bio: "Heavy-duty truck, I lift anything.", reviews: ["Strong and fast! - 5/5"] },
+            { id: 4, name: "The Duo", service: "2 People", price: 80, distance: "5.2 miles", img: "https://source.unsplash.com/300x150/?two-workers-truck", bio: "Two of us to make it quick and easy.", reviews: ["Great teamwork! - 4/5"] },
+            { id: 5, name: "Triple Threat", service: "3 People", price: 100, distance: "6.0 miles", img: "https://source.unsplash.com/300x150/?group-workers", bio: "Three strong guys, no job too big.", reviews: ["Amazing service! - 5/5"] },
+            { id: 6, name: "Full Squad", service: "4+ People", price: 120, distance: "7.8 miles", img: "https://source.unsplash.com/300x150/?large-crew-truck", bio: "Full team for massive moves.", reviews: ["Best crew ever! - 5/5"] },
+            { id: 7, name: "Sam’s Pickup", service: "Truck Only", price: 45, distance: "1.8 miles", img: "https://source.unsplash.com/300x150/?black-pickup-truck", bio: "Quick and affordable transport.", reviews: ["Very reliable! - 4/5"] },
+            { id: 8, name: "Tina’s Team", service: "2 People", price: 85, distance: "4.0 miles", img: "https://source.unsplash.com/300x150/?workers-loading-truck", bio: "We’ll handle your move with care.", reviews: ["Careful and efficient! - 5/5"] }
+        ];
+
+        let currentFilter = "All";
+        let selectedVendor = null;
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('nav ul li a').forEach(link => link.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelector(`nav ul li a[onclick="showPage('${pageId}')"]`).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Search Function
+        function search() {
+            const zipcode = document.getElementById("zipcode").value;
+            if (zipcode) {
+                document.getElementById("listings").style.display = "block";
+                document.getElementById("listings").scrollIntoView({ behavior: "smooth" });
+                displayListings();
+            } else {
+                alert("Please enter a zip code!");
+            }
+        }
+
+        // Filter Listings
+        function filterListings(service) {
+            currentFilter = service;
+            document.querySelectorAll(".option").forEach(opt => opt.classList.remove("active"));
+            event.target.classList.add("active");
+            displayListings();
+        }
+
+        // Display Listings
+        function displayListings() {
+            const grid = document.getElementById("listings-grid");
+            grid.innerHTML = "";
+            const filteredVendors = currentFilter === "All" ? vendors : vendors.filter(v => v.service === currentFilter);
+            filteredVendors.forEach(vendor => {
+                const div = document.createElement("div");
+                div.className = "listing";
+                div.innerHTML = `
+                    <img src="${vendor.img}" alt="${vendor.name}">
+                    <h3>${vendor.name}</h3>
+                    <p>${vendor.service}</p>
+                    <p>${vendor.price}/hr | ${vendor.distance}</p>
+                    <button onclick="viewVendor(${vendor.id})">View Details</button>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // View Vendor Details
+        function viewVendor(vendorId) {
+            selectedVendor = vendors.find(v => v.id === vendorId);
+            const content = document.getElementById("vendor-details-content");
+            content.innerHTML = `
+                <img src="${selectedVendor.img}" alt="${selectedVendor.name}">
+                <h2>${selectedVendor.name}</h2>
+                <p>${selectedVendor.service}</p>
+                <p>$${selectedVendor.price}/hr | ${selectedVendor.distance}</p>
+                <p>${selectedVendor.bio}</p>
+                <div class="reviews">
+                    <h3>Reviews</h3>
+                    ${selectedVendor.reviews.map(review => `<div class="review">${review}</div>`).join('')}
+                </div>
+                <button onclick="startBooking(${vendorId})">Book Now</button>
+            `;
+            showPage('vendor-details');
+        }
+
+        // Start Booking
+        function startBooking(vendorId) {
+            selectedVendor = vendors.find(v => v.id === vendorId);
+            document.getElementById("booking-vendor").innerHTML = `<h3>Booking with ${selectedVendor.name}</h3>`;
+            updatePrice();
+            showPage('booking');
+        }
+
+        // Update Price
+        function updatePrice() {
+            let basePrice = selectedVendor.price;
+            const addOns = document.getElementById("add-ons").value;
+            if (addOns === "insurance") basePrice += 10;
+            if (addOns === "extra-helper") basePrice += 20;
+            document.getElementById("price-display").textContent = `Total: $${basePrice}/hr`;
+        }
+
+        // Confirm Booking
+        function confirmBooking() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "flex";
+            modal.querySelector("p").textContent = `Your truck and crew (${selectedVendor.name}) are on the way.`;
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+            showPage('home');
+        }
+
+        // Event Listeners for Dynamic Pricing
+        document.getElementById("add-ons")?.addEventListener("change", updatePrice);
+
+        // Initial Load
+        displayListings();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</body>
+</html>
