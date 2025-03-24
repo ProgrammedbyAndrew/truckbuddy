@@ -24,8 +24,9 @@
             position: sticky;
             top: 0;
             background: #2a2a2a;
-            padding: 10px 15px; /* Reduced padding for mobile */
+            padding: 10px 15px;
             display: flex;
+            flex-wrap: wrap; /* Allow wrapping for better alignment */
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -33,22 +34,28 @@
         }
 
         nav .logo {
-            font-size: 1.2rem; /* Smaller logo font for iPhone */
+            font-size: 1.2rem;
             font-weight: bold;
             color: #00f7ff;
             text-shadow: 0 0 5px #00f7ff;
+            flex: 1; /* Ensure logo takes appropriate space */
+            text-align: left;
         }
 
         nav ul {
             display: flex;
-            gap: 10px; /* Smaller gap for iPhone */
+            gap: 8px;
             list-style: none;
+            flex-wrap: wrap; /* Allow nav items to wrap on small screens */
+            justify-content: flex-end;
+            flex: 2; /* Balance space with logo */
         }
 
         nav ul li a {
             color: #ccc;
             text-decoration: none;
-            font-size: 0.9rem; /* Smaller font for nav links */
+            font-size: 0.85rem;
+            padding: 5px 8px; /* Add padding for touch targets */
             transition: color 0.3s;
         }
 
@@ -60,7 +67,7 @@
         /* Page Container */
         .page {
             display: none;
-            padding: 15px; /* Reduced padding for mobile */
+            padding: 10px;
         }
 
         .page.active {
@@ -69,50 +76,52 @@
 
         /* Hero Section */
         .hero {
-            height: 70vh; /* Shorter hero for iPhone */
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1600x900/?pickup-truck');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://moveadvisor.com/move/wp-content/uploads/2021/12/pickup-moving.jpg');
             background-size: cover;
             background-position: center;
             animation: fadeIn 2s ease-in;
         }
 
         .hero h1 {
-            font-size: 2.5rem; /* Smaller heading for iPhone */
+            font-size: 2rem;
             text-shadow: 0 0 10px #00f7ff;
             animation: slideUp 1s ease-out;
+            margin-bottom: 10px;
         }
 
         .hero p {
-            font-size: 1rem; /* Smaller subtitle */
-            margin: 10px 0 20px;
+            font-size: 0.9rem;
+            margin: 0 15px 15px;
             color: #ccc;
         }
 
         .search-bar {
             display: flex;
-            flex-direction: column; /* Stack inputs vertically on iPhone */
+            flex-direction: column;
             gap: 10px;
-            width: 90%; /* Full width for better fit */
+            width: 85%;
+            max-width: 300px; /* Prevent stretching too wide */
             animation: zoomIn 1s ease-out 1s;
             animation-fill-mode: both;
         }
 
         .search-bar input {
-            padding: 12px;
-            font-size: 1rem;
+            padding: 10px;
+            font-size: 0.9rem;
             border: none;
             border-radius: 20px;
-            width: 100%; /* Full width */
+            width: 100%;
         }
 
         .search-bar button {
-            padding: 12px 20px;
-            font-size: 1rem;
+            padding: 10px;
+            font-size: 0.9rem;
             border: none;
             background: #00f7ff;
             color: #1a1a1a;
@@ -122,35 +131,35 @@
         }
 
         .search-bar button:hover {
-            transform: scale(1.05); /* Smaller scale for mobile */
+            transform: scale(1.03);
             box-shadow: 0 0 10px #00f7ff;
         }
 
         /* Vendor Options */
         .vendor-options {
-            padding: 30px 15px; /* Reduced padding */
+            padding: 20px 10px;
             text-align: center;
             background: #2a2a2a;
         }
 
         .vendor-options h2 {
-            font-size: 1.8rem; /* Smaller heading */
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
         .options-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; /* Smaller gap */
+            gap: 8px;
         }
 
         .option {
-            padding: 10px 15px; /* Smaller padding */
+            padding: 8px 12px;
             background: #3a3a3a;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9rem; /* Smaller font */
+            font-size: 0.85rem;
             transition: transform 0.3s, background 0.3s;
         }
 
@@ -167,27 +176,27 @@
 
         /* Listings */
         .listings {
-            padding: 30px 15px;
+            padding: 20px 10px;
         }
 
         .listings h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             text-align: center;
         }
 
         .listings-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Single column for iPhone */
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 12px;
             max-width: 100%;
             margin: 0 auto;
         }
 
         .listing {
             background: #3a3a3a;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
             animation: fadeIn 1s ease-in;
             transition: transform 0.3s;
@@ -199,34 +208,34 @@
 
         .listing img {
             width: 100%;
-            height: 120px; /* Smaller image height */
+            height: 100px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         .listing h3 {
-            margin: 8px 0;
-            font-size: 1.1rem; /* Smaller font */
+            margin: 6px 0;
+            font-size: 1rem;
         }
 
         .listing p {
             color: #ccc;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .listing button {
-            margin-top: 10px;
+            margin-top: 8px;
             padding: 8px 16px;
             background: #00f7ff;
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: transform 0.3s;
         }
 
         .listing button:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         /* Vendor Details */
@@ -234,27 +243,27 @@
             max-width: 100%;
             margin: 0 auto;
             background: #2a2a2a;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
         }
 
         .vendor-details img {
             width: 100%;
-            height: 200px; /* Smaller image height */
+            height: 180px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         .vendor-details .reviews {
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .review {
             background: #3a3a3a;
-            padding: 10px;
-            margin: 10px 0;
+            padding: 8px;
+            margin: 8px 0;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         /* Booking Form */
@@ -262,34 +271,34 @@
             max-width: 100%;
             margin: 0 auto;
             background: #2a2a2a;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
         }
 
         .booking-form label {
             display: block;
-            margin: 10px 0 5px;
-            font-size: 0.9rem;
+            margin: 8px 0 4px;
+            font-size: 0.85rem;
         }
 
         .booking-form input, .booking-form select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: none;
             border-radius: 5px;
             background: #3a3a3a;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .booking-form button {
-            margin-top: 15px;
+            margin-top: 12px;
             padding: 10px 20px;
             background: #00f7ff;
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         /* Profile Page */
@@ -299,15 +308,15 @@
         }
 
         .profile .bookings {
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .booking {
             background: #3a3a3a;
-            padding: 10px;
-            margin: 10px 0;
+            padding: 8px;
+            margin: 8px 0;
             border-radius: 5px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         /* Modal */
@@ -326,68 +335,68 @@
 
         .modal-content {
             background: #2a2a2a;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
             animation: slideUp 0.5s ease-out;
-            width: 90%; /* Ensure modal fits on iPhone */
-            max-width: 300px;
+            width: 90%;
+            max-width: 280px;
         }
 
         .modal-content button {
-            margin-top: 15px;
-            padding: 10px 20px;
+            margin-top: 12px;
+            padding: 8px 16px;
             background: #00f7ff;
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* Testimonials Section */
         .testimonials {
-            padding: 30px 15px;
+            padding: 20px 10px;
             background: #2a2a2a;
             text-align: center;
         }
 
         .testimonials h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
         .testimonial-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
+            gap: 12px;
             max-width: 100%;
             margin: 0 auto;
         }
 
         .testimonial {
             background: #3a3a3a;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
         }
 
         /* Footer */
         footer {
             background: #2a2a2a;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         footer p {
             color: #ccc;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
 
         footer a {
             color: #00f7ff;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
 
         footer a:hover {
@@ -420,10 +429,11 @@
             animation: pulse 2s infinite;
         }
 
-        /* Media Queries for Larger Screens (Desktop) */
+        /* Media Queries for Larger Screens */
         @media (min-width: 768px) {
             nav {
                 padding: 10px 20px;
+                flex-wrap: nowrap;
             }
 
             nav .logo {
@@ -436,6 +446,7 @@
 
             nav ul li a {
                 font-size: 1rem;
+                padding: 5px 10px;
             }
 
             .page {
@@ -457,15 +468,15 @@
             .search-bar {
                 flex-direction: row;
                 width: auto;
+                max-width: none;
             }
 
             .search-bar input {
                 width: 200px;
             }
 
-            .search-bar button:hover {
-                transform: scale(1.1);
-                box-shadow: 0 0 15px #00f7ff;
+            .search-bar button {
+                padding: 10px 20px;
             }
 
             .vendor-options {
@@ -483,10 +494,6 @@
             .option {
                 padding: 15px 25px;
                 font-size: 1rem;
-            }
-
-            .option:hover {
-                transform: translateY(-5px);
             }
 
             .listings {
@@ -524,10 +531,6 @@
                 font-size: 1rem;
             }
 
-            .listing button:hover {
-                transform: scale(1.1);
-            }
-
             .vendor-details {
                 max-width: 800px;
                 padding: 20px;
@@ -554,27 +557,9 @@
                 font-size: 1rem;
             }
 
-            .booking-form button {
-                margin-top: 20px;
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-
-            .profile {
-                max-width: 800px;
-            }
-
-            .booking {
-                font-size: 1rem;
-            }
-
             .modal-content {
                 width: auto;
                 max-width: 400px;
-            }
-
-            .modal-content button {
-                font-size: 1rem;
             }
 
             .testimonials {
@@ -697,7 +682,7 @@
                 <option value="insurance">Insurance (+$10)</option>
                 <option value="extra-helper">Extra Helper (+$20/hr)</option>
             </select>
-            <div id="price-display" style="margin: 20px 0;">Total: $0/hr</div>
+            <div id="price-display" style="margin: 15px 0;">Total: $0/hr</div>
             <button onclick="confirmBooking()">Confirm Booking</button>
         </div>
     </div>
@@ -759,16 +744,16 @@
     </footer>
 
     <script>
-        // Mock Vendor Data
+        // Mock Vendor Data with Provided Images
         const vendors = [
-            { id: 1, name: "Mike’s Hauler", service: "Truck Only", price: 40, distance: "2.3 miles", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c", bio: "Reliable Ford F-150, perfect for quick moves.", reviews: ["Great service! - 5/5", "On time, no hassle. - 4/5"] },
-            { id: 2, name: "Jenny & Truck", service: "Truck + Light Loading", price: 55, distance: "3.1 miles", img: "https://images.unsplash.com/photo-1593085512500-5d55148d6f0d", bio: "I’ll help with small boxes and light lifting.", reviews: ["Super friendly! - 5/5"] },
-            { id: 3, name: "Big Joe’s Crew", service: "Truck + Heavy Loading", price: 70, distance: "4.5 miles", img: "https://images.unsplash.com/photo-1517511620798-cec34d42825e", bio: "Heavy-duty truck, I lift anything.", reviews: ["Strong and fast! - 5/5"] },
-            { id: 4, name: "The Duo", service: "2 People", price: 80, distance: "5.2 miles", img: "https://images.unsplash.com/photo-1570295999919-56cebcd28b2b", bio: "Two of us to make it quick and easy.", reviews: ["Great teamwork! - 4/5"] },
-            { id: 5, name: "Triple Threat", service: "3 People", price: 100, distance: "6.0 miles", img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f", bio: "Three strong guys, no job too big.", reviews: ["Amazing service! - 5/5"] },
-            { id: 6, name: "Full Squad", service: "4+ People", price: 120, distance: "7.8 miles", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", bio: "Full team for massive moves.", reviews: ["Best crew ever! - 5/5"] },
-            { id: 7, name: "Sam’s Pickup", service: "Truck Only", price: 45, distance: "1.8 miles", img: "https://images.unsplash.com/photo-1502877338535-766e1452684a", bio: "Quick and affordable transport.", reviews: ["Very reliable! - 4/5"] },
-            { id: 8, name: "Tina’s Team", service: "2 People", price: 85, distance: "4.0 miles", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3", bio: "We’ll handle your move with care.", reviews: ["Careful and efficient! - 5/5"] }
+            { id: 1, name: "Mike’s Hauler", service: "Truck Only", price: 40, distance: "2.3 miles", img: "https://moveadvisor.com/move/wp-content/uploads/2021/12/pickup-moving.jpg", bio: "Reliable Ford F-150, perfect for quick moves.", reviews: ["Great service! - 5/5", "On time, no hassle. - 4/5"] },
+            { id: 2, name: "Jenny & Truck", service: "Truck + Light Loading", price: 55, distance: "3.1 miles", img: "https://www.enterprise.com/en/trucks/_jcr_content/root/teaser_image.coreimg.jpeg/1695665084856/trucks-total-mobility.jpeg", bio: "I’ll help with small boxes and light lifting.", reviews: ["Super friendly! - 5/5"] },
+            { id: 3, name: "Big Joe’s Crew", service: "Truck + Heavy Loading", price: 70, distance: "4.5 miles", img: "https://goshare.co/wp-content/uploads/2018/09/Chris-C-delivering-mattress-at-Costco-San-Marcos.jpg", bio: "Heavy-duty truck, I lift anything.", reviews: ["Strong and fast! - 5/5"] },
+            { id: 4, name: "The Duo", service: "2 People", price: 80, distance: "5.2 miles", img: "https://moveadvisor.com/move/wp-content/uploads/2021/12/pickup-moving.jpg", bio: "Two of us to make it quick and easy.", reviews: ["Great teamwork! - 4/5"] },
+            { id: 5, name: "Triple Threat", service: "3 People", price: 100, distance: "6.0 miles", img: "https://www.enterprise.com/en/trucks/_jcr_content/root/teaser_image.coreimg.jpeg/1695665084856/trucks-total-mobility.jpeg", bio: "Three strong guys, no job too big.", reviews: ["Amazing service! - 5/5"] },
+            { id: 6, name: "Full Squad", service: "4+ People", price: 120, distance: "7.8 miles", img: "https://goshare.co/wp-content/uploads/2018/09/Chris-C-delivering-mattress-at-Costco-San-Marcos.jpg", bio: "Full team for massive moves.", reviews: ["Best crew ever! - 5/5"] },
+            { id: 7, name: "Sam’s Pickup", service: "Truck Only", price: 45, distance: "1.8 miles", img: "https://moveadvisor.com/move/wp-content/uploads/2021/12/pickup-moving.jpg", bio: "Quick and affordable transport.", reviews: ["Very reliable! - 4/5"] },
+            { id: 8, name: "Tina’s Team", service: "2 People", price: 85, distance: "4.0 miles", img: "https://www.enterprise.com/en/trucks/_jcr_content/root/teaser_image.coreimg.jpeg/1695665084856/trucks-total-mobility.jpeg", bio: "We’ll handle your move with care.", reviews: ["Careful and efficient! - 5/5"] }
         ];
 
         let currentFilter = "All";
